@@ -1,0 +1,53 @@
+CREATE TABLE Fahrzeug
+(
+    fa_id              INT,
+    fa_gesamtkilometer FLOAT,
+    fa_baujahr         INT,
+    PRIMARY KEY (fa_id)
+);
+
+CREATE TABLE Roller
+(
+    fa_kennzeichen VARCHAR(20),
+    r_typ VARCHAR(20),
+    r_standort VARCHAR(20),
+    r_status VARCHAR(20),
+    fa_id INT,
+    PRIMARY KEY (fa_kennzeichen),
+    FOREIGN KEY (fa_id) REFERENCES Fahrzeug
+);
+
+CREATE TABLE Bestellung
+(
+    b_id INT,
+    k_id INT,
+    fa_kennzeichen VARCHAR(20),
+    f_id INT,
+    PRIMARY KEY (b_id),
+    FOREIGN KEY (fa_kennzeichen) REFERENCES Roller,
+    FOREIGN KEY (k_id) REFERENCES Kunde
+);
+
+CREATE TABLE Kunde
+(
+    k_id INT,
+    k_vorname VARCHAR(20),
+    k_nachname VARCHAR(20),
+    k_email VARCHAR(20),
+    k_passwort VARCHAR(20),
+    k_straße VARCHAR(20),
+    k_ort VARCHAR(20),
+    k_plz VARCHAR(20),
+    k_anspruch_num INT,
+    PRIMARY KEY (k_id)
+);
+
+CREATE TABLE Fahrt
+(
+    f_id INT,
+    f_status VARCHAR(20),
+    f_startort VARCHAR(20),
+    f_kilometer_gefahren INT,
+    f_zielzeit INT,
+    PRIMARY KEY (f_id)
+);
